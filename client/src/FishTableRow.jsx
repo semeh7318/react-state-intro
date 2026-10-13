@@ -1,15 +1,29 @@
-const FishTableRow = () => {
-
-
-    return (
-      <tr>
-        <td className="fish-name">Nemo</td>
-        <td>
-          <img src="http://tinyurl.com/h8o5szh" alt='Nemo' />
-        </td>
-       <td className="fish-description">Does anyone know where my dad is?</td> 
-      </tr>
-    )
+import { useState } from "react";
+ 
+const FishTableRow = ({ name, image, description }) => {
+  const [showDescription, setShowDescription] = useState(true);
+ 
+  const toggleDescription = () => {
+    setShowDescription(!showDescription);
+  };
+ 
+  return (
+    <tr>
+      <td
+        className="fish-name"
+        onClick={toggleDescription}
+        style={{ cursor: 'pointer' }}
+      >
+        {name}
+      </td>
+      <td>
+        <img src={image} alt={name} />
+      </td>
+      <td className="fish-description">
+        {showDescription && description}
+      </td>
+    </tr>
+  )
 }
-
+ 
 export default FishTableRow
